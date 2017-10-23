@@ -8,4 +8,4 @@ my_app.secret_key = os.urandom(32)
 
 @my_app.route('/', methods = ['GET','POST'])
 def root():
-    return '<b>WORKING</b>'
+    return render_template('home.html')
