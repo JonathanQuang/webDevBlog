@@ -8,3 +8,6 @@ created devlog and made first entry
 taradachukA -- 2017-10-24 00:26
 polished up the blog.py and created working default route
 second entry in devlog
+
+chenX -- 2017-10-24 14:05
+Finished login template completely and make post template
