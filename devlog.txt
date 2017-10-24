@@ -1,3 +1,6 @@
 jonathanQ -- 2000-10-23 23:09
 updated design document, removed extraneous file from templates folder,
 created devlog and made first entry
+taradachukA -- 2000-10-23 00:26
+polished up the blog.py and created working default route
+second entry in devlog
