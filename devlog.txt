@@ -1,0 +1,3 @@
+jonathanQ -- 2000-10-23 23:09
+updated design document, removed extraneous file from templates folder,
+created devlog and made first entry
