@@ -1,0 +1,10 @@
+{% extends "home.html" %}
+{% block content1 %}
+	<form method="GET" action="/blogEntries/">
+	{% for user in listUser %}
+		<input type="radio" name="blogUserName" value="{{user}}">
+		{{user}}
+		<br>
+	{%endfor%}
+	</form>	
+{% endblock %}
