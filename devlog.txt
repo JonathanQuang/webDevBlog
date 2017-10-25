@@ -17,3 +17,6 @@ Create listOfUsers html page
 
 jonathanQ -- 2017-10-25 13:52
 Created listOfUserEntries html page and created utils folder
+
+xavierC -- 2017-10-25 13:55
+Updated templates
