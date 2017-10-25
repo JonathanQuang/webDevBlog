@@ -1,13 +1,16 @@
-chenX -- 2017-10-23 13:50
+xavierC -- 2017-10-23 13:50
 Finished home template and started work on login template
 
 jonathanQ -- 2017-10-23 23:09
 updated design document, removed extraneous file from templates folder,
 created devlog and made first entry
 
-taradachukA -- 2017-10-24 00:26
+alexT -- 2017-10-24 00:26
 polished up the blog.py and created working default route
 second entry in devlog
 
-chenX -- 2017-10-24 14:05
+xavierC -- 2017-10-24 14:05
 Finished login template completely and make post template
+
+jonathanQ -- 2017-10-24 14:06
+Create listOfUsers html page
