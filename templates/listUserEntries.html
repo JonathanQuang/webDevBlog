@@ -1,0 +1,10 @@
+{% extends "home.html" %}
+{% block content1 %}
+	<h1>
+		{{Username}}'s Blog
+	</h1>
+	{% for entries in entryList %}
+		<br>
+		entries
+	{% endfor %}
+{% endblock %}	
