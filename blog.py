@@ -1,10 +1,11 @@
 from flask import Flask, render_template,  request, session, redirect, url_for
-import os
+import os, DBbuild
 
 myapp = Flask(__name__)
 
-myapp.secret_key = os.urandom(32)
-login_dict = {}
+myapp.secret_key = "vsecret"
+DBbuild.createTABLE()
+
 
 @myapp.route('/', methods = ['GET','POST'])
 def root():
@@ -14,20 +15,20 @@ def root():
         return render_template('login.html', title = "Login")
 
 @myapp.route('/home/', methods = ['GET','POST'])
-def welcome():
+def home():
     if bool(session) != False:
-        return render_template("home.html")
+        return render_template("home.html", USER = session['user'])
     user = request.form['username']
     print user
     password = request.form['inputPassword3']
     print password
-    if request.form['up'] == "Sign Up":
+    if request.form['up'] == "Sign up":
         if (user in login_dict):
             return redirect(url_for('error'))
         login_dict[user] = password
         session['user'] = user
         session['pass'] = password
-        return render_template('home.html')
+        return render_template('home.html', USER = session['user'])
     if request.form['in'] == "Log In":
         if not (user in login_dict):
             return redirect(url_for('error'))
