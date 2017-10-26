@@ -16,10 +16,12 @@ jonathanQ -- 2017-10-24 14:06
 Create listOfUsers html page
 
 alexT -- 2017-10-24 14:10
-Finished backend for account creation but still utilizes a list instead of an sql database
+Finished backend for account creation but still utilizes a list instead of an sql database. Created helper python file for DB 
+work
 
 jonathanQ -- 2017-10-25 13:52
 Created listOfUserEntries html page and created utils folder
 
 xavierC -- 2017-10-25 13:55
 Updated templates
+
