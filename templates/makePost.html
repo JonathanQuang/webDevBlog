@@ -1,11 +1,16 @@
+{% extends "home.html" %}
+{% block content2 %}
+
+{% endblock%}
+
 {% block content1 %}
 <center>
-<h1> Input text for your new post! </h1>
+<h1> Input text for your post! </h1>
 <br> 
 <form action="/profile/" method="post">
-<textarea class="form-control" rows="5" placeholder="Make a post" name="makePostText"></textarea>
+<textarea class="form-control" rows="5" placeholder="Type something" name="postText"></textarea>
 <input class="btn btn-primary" type="submit" value="Submit" id="submit">
 <input class="btn btn-danger" type="submit" value="Cancel" id="cancel">
 </form>
 </center>
-{% block content1 %}
+{% endblock %}
