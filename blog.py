@@ -1,9 +1,11 @@
 from flask import Flask, render_template,  request, session, redirect, url_for
-import os, DBbuild, sqlite3, csv
-
+import os, sqlite3, csv
+from utils import DBbuild
 myapp = Flask(__name__)
 
 myapp.secret_key = "vsecret"
+db = sqlite3.connect("blog.db")
+c = db.cursor() 
 DBbuild.createTABLE()
 
 
@@ -25,14 +27,16 @@ def home():
     if request.form['up'] == "Sign up":
         if (user in login_dict):
             return redirect(url_for('error'))
-        
+        command = "INSERT INTO users VALUES (%s, %s);"%(user, password)
+        c.execute(command)
+        db.commit()
         session['user'] = user
         session['pass'] = password
         return render_template('home.html', USER = session['user'])
     if request.form['in'] == "Log In":
-        if not (user in login_dict):
+        if not (user in c.execute("SELECT name FROM users;")):
             return redirect(url_for('error'))
-        if password == login_dict[user]:
+        if hash(password) == hash(c.execute("SELECT pass FROM users WHERE name = %s;"%(user))):
             return render_template('home.html')
 
 @myapp.route('/error/', methods = ['GET','POST'])
