@@ -9,6 +9,7 @@
 <br> 
 <form action="/profile/" method="post">
 <textarea class="form-control" rows="5" placeholder="Type something" name="postText"></textarea>
+<br>
 <input class="btn btn-primary" type="submit" value="Submit" id="submit">
 <input class="btn btn-danger" type="submit" value="Cancel" id="cancel">
 </form>
