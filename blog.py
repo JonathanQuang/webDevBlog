@@ -1,5 +1,5 @@
 from flask import Flask, render_template,  request, session, redirect, url_for
-import os, DBbuild
+import os, DBbuild, sqlite3, csv
 
 myapp = Flask(__name__)
 
@@ -25,7 +25,7 @@ def home():
     if request.form['up'] == "Sign up":
         if (user in login_dict):
             return redirect(url_for('error'))
-        login_dict[user] = password
+        
         session['user'] = user
         session['pass'] = password
         return render_template('home.html', USER = session['user'])
