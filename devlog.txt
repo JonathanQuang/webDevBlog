@@ -25,3 +25,5 @@ Created listOfUserEntries html page and created utils folder
 xavierC -- 2017-10-25 13:55
 Updated templates
 
+jonathanQ -- 2017-10-26 20:32
+Fixed issue with Opertional error where the database file could not be opened.
