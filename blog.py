@@ -4,9 +4,9 @@ from utils import DBbuild
 myapp = Flask(__name__)
 
 myapp.secret_key = "vsecret"
-db = sqlite3.connect("blog.db")
+db = sqlite3.connect("data/blog.db")
 c = db.cursor() 
-DBbuild.createTABLE()
+DBbuild.createTABLE(c)
 
 
 @myapp.route('/', methods = ['GET','POST'])
