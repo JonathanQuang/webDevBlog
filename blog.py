@@ -6,7 +6,7 @@ myapp = Flask(__name__)
 myapp.secret_key = "vsecret"
 db = sqlite3.connect("data/blog.db")
 c = db.cursor() 
-DBbuild.createTABLE(c)
+DBbuild.createTABLE()
 
 
 @myapp.route('/', methods = ['GET','POST'])
@@ -18,6 +18,7 @@ def root():
 
 @myapp.route('/home/', methods = ['GET','POST'])
 def home():
+    c= db.cursor()
     if bool(session) != False:
         return render_template("home.html", USER = session['user'])
     user = request.form['username']
@@ -25,8 +26,8 @@ def home():
     password = request.form['inputPassword3']
     print password
     if request.form['up'] == "Sign up":
-        if (user in login_dict):
-            return redirect(url_for('error'))
+    #    if (user in c.execute("SELECT name FROM users;").fetchall()):
+  #          return redirect(url_for('error'))
         command = "INSERT INTO users VALUES (%s, %s);"%(user, password)
         c.execute(command)
         db.commit()
@@ -34,9 +35,9 @@ def home():
         session['pass'] = password
         return render_template('home.html', USER = session['user'])
     if request.form['in'] == "Log In":
-        if not (user in c.execute("SELECT name FROM users;")):
+        if not (user in c.execute("SELECT name FROM users;").fetchall()):
             return redirect(url_for('error'))
-        if hash(password) == hash(c.execute("SELECT pass FROM users WHERE name = %s;"%(user))):
+        if hash(password) == hash(c.execute("SELECT pass FROM users WHERE name = %s;"%(user)).fetchall()):
             return render_template('home.html')
 
 @myapp.route('/error/', methods = ['GET','POST'])

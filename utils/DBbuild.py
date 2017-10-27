@@ -9,22 +9,29 @@ import csv       #facilitates CSV I/O
 
 #==========================================================
 #INSERT YOUR POPULATE CODE IN THIS ZONE
-def createTABLE(cursor):
-	c=cursor
-	command = "CREATE TABLE IF NOT EXISTS users (name TEXT, pass TEXT);" 
-	c.execute(command) 
-	command = "CREATE TABLE IF NOT EXISTS postNum(name TEXT, postid INTEGER);" 
-	c.execute(command) 
-	command = "CREATE TABLE IF NOT EXISTS posts(postid INTEGER, post TEXT);" 
-	c.execute(command) 
+def createTABLE():
+    f="data/blog.db"
+    db=sqlite3.connect(f)
+    c=db.cursor()
+    command = "CREATE TABLE IF NOT EXISTS users (name TEXT, pass TEXT);" 
+    c.execute(command) 
+    command = "CREATE TABLE IF NOT EXISTS postNum(name TEXT, postid INTEGER);" 
+    c.execute(command) 
+    command = "CREATE TABLE IF NOT EXISTS posts(postid INTEGER, post TEXT);" 
+    c.execute(command)
+    db.commit()
+    db.close()
 
 
 
-def insertintoTABLE(cursor,tablename, field1, field2):
-	c=cursor 
-	command = "INSERT INTO %s VALUES(%s, %s);"%(tablename, field1, field2) 
-	c.execute(command)
-    
+def insertintoTABLE(tablename, field1, field2):
+    f="data/blog.db"
+    db=sqlite3.connect(f)
+    c=db.cursor()
+    command = "INSERT INTO %s VALUES(%s, %s);"%(tablename, field1, field2)
+    c.execute(command)
+    db.commit()
+    db.close()  
 
 #createTABLE()
 
