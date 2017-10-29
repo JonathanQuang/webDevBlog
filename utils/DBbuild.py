@@ -28,11 +28,24 @@ def insertintoTABLE(tablename, field1, field2):
     f="data/blog.db"
     db=sqlite3.connect(f)
     c=db.cursor()
-    command = "INSERT INTO %s VALUES(%s, %s);"%(tablename, field1, field2)
+    command = "INSERT INTO %s VALUES('%s', '%s');"%(tablename, field1, field2)
     c.execute(command)
     db.commit()
     db.close()  
 
+def listUsers(tablename, withPassword, user):
+    f="data/blog.db"
+    db=sqlite3.connect(f)
+    c=db.cursor()
+    if (withPassword):
+        command = "SELECT pass FROM %s WHERE name = %s;"%(tablename, user)
+    else:
+        command = "SELECT name FROM %s;"%(tablename)
+    c.execute(command)
+    listNames = c.fetchall()
+    db.commit()
+    db.close()
+    return listNames
 #createTABLE()
 
 #==========================================================

@@ -3,9 +3,7 @@ import os, sqlite3, csv
 from utils import DBbuild
 myapp = Flask(__name__)
 
-myapp.secret_key = "vsecret"
-db = sqlite3.connect("data/blog.db")
-c = db.cursor() 
+myapp.secret_key = os.urandom(32)
 DBbuild.createTABLE()
 
 
@@ -18,32 +16,30 @@ def root():
 
 @myapp.route('/home/', methods = ['GET','POST'])
 def home():
-    c= db.cursor()
     if bool(session) != False:
-        return render_template("home.html", USER = session['user'])
+        return render_template("listUserEntries.html", USER = session['user'])
     user = request.form['username']
     print user
-    password = request.form['inputPassword3']
+    password = hash(request.form['inputPassword3'])
     print password
     if request.form['up'] == "Sign up":
-    #    if (user in c.execute("SELECT name FROM users;").fetchall()):
-  #          return redirect(url_for('error'))
-        command = "INSERT INTO users VALUES (%s, %s);"%(user, password)
-        c.execute(command)
-        db.commit()
+        print DBbuild.listUsers("users", False, "")[0][0]
+        if (user in DBbuild.listUsers("users", False, "")):
+            return redirect(url_for('error'))
+        DBbuild.insertintoTABLE('users', user, password)
         session['user'] = user
         session['pass'] = password
-        return render_template('home.html', USER = session['user'])
+        return render_template('listUserEntries.html', USER = session['user'])
     if request.form['in'] == "Log In":
-        if not (user in c.execute("SELECT name FROM users;").fetchall()):
+        if not (user in DBbuild.listUsers("users", False, "")):
             return redirect(url_for('error'))
-        if hash(password) == hash(c.execute("SELECT pass FROM users WHERE name = %s;"%(user)).fetchall()):
-            return render_template('home.html')
-
+        if password == hash(listUsers("users", True, user)[0]):
+            return render_template('listUserEntries.html', USER = session['user'])
+       
 @myapp.route('/error/', methods = ['GET','POST'])
 def error():
-    if bool(login_dict) == False:
-        return render_template ('error.html')
+ #   if bool(list) == False:
+    return render_template ('error.html')
 
 @myapp.route('/logout/', methods= ['GET', 'POST'])
 def logout():
