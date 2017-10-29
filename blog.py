@@ -45,8 +45,9 @@ def profile():
 
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():
-    #posts=request.form['postText']
-    #if request.form['submit'] == "Submit":
+    post = request.form['postText']
+    if request.form['submit'] == "Submit":
+        insertintoTABLE('postNum', session['user'], post)
     return render_template('makePost.html', USER=session['user'])
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():

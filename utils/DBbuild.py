@@ -15,9 +15,7 @@ def createTABLE():
     c=db.cursor()
     command = "CREATE TABLE IF NOT EXISTS users (name TEXT, pass TEXT);"
     c.execute(command)
-    command = "CREATE TABLE IF NOT EXISTS postNum(name TEXT, postid INTEGER);"
-    c.execute(command)
-    command = "CREATE TABLE IF NOT EXISTS posts(postid INTEGER, post TEXT);"
+    command = "CREATE TABLE IF NOT EXISTS posts(name TEXT, post TEXT);"
     c.execute(command)
     db.commit()
     db.close()
