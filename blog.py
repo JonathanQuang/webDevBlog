@@ -41,16 +41,18 @@ def home():
 
 @myapp.route('/profile/', methods=['GET', 'POST'])
 def profile():
+    try:
+        print 1
+	post = request.form['postText']
+        print 2
+	DBbuild.insertintoTABLE('posts', session['user'], post)
+        print 3
+    except:
+	print "wat"
     return render_template('profile.html', USER=session['user'])
 
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():
-	try:
-		post = request.form['postText']
-		if request.form['submit'] == "Submit":
-			insertintoTABLE('postNum', session['user'], post)
-	except:
-		print "wat"
 	return render_template('makePost.html', USER=session['user'])
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():
