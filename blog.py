@@ -45,10 +45,13 @@ def profile():
 
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():
-    post = request.form['postText']
-    if request.form['submit'] == "Submit":
-        insertintoTABLE('postNum', session['user'], post)
-    return render_template('makePost.html', USER=session['user'])
+	try:
+		post = request.form['postText']
+		if request.form['submit'] == "Submit":
+			insertintoTABLE('postNum', session['user'], post)
+	except:
+		print "wat"
+	return render_template('makePost.html', USER=session['user'])
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():
  #   if bool(list) == False:
