@@ -49,7 +49,7 @@ def profile():
         print 3
     except:
 	print "wat"
-    return render_template('profile.html', USER=session['user'])
+    return render_template('profile.html', USER=session['user'], entryList=DBbuild.listPosts(session['user']))
 
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():

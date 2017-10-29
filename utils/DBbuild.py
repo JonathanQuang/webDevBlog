@@ -72,6 +72,15 @@ def listAllUsers():
     for row in c.execute('SELECT name from users'):
         userList.append(row[0])
     return userList
+
+def listPosts(username):
+    f="data/blog.db"
+    db=sqlite3.connect(f)
+    c=db.cursor()
+    postList=[]
+    for row in c.execute('SELECT post from posts WHERE name=\'' + username + "\'"):
+        postList.append(row[0])
+    return postList
 #==========================================================
 #db.commit() #save changes
 #db.close()  #close database
