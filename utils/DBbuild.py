@@ -48,6 +48,24 @@ def listUsers(tablename, withPassword, user):
     return listNames
 #createTABLE()
 
+def listUserEntries(username):
+	f="data/blog.db"
+	db=sqlite3.connect(f)
+	c=db.cursor()
+	postIdList=[]
+	listEntries=[]
+	command = "SELECT postid FROM postNUM WHERE name=" + username + ";"
+	cList = c.excute(command)
+	for entry in cList:
+		postIdList.append(entry)
+	for entry in postIDList:
+		command = "SELECT post FROM posts WHERE postid=" + entry + ";"
+		cList = c.execute(command)
+		listEntries.append(cList[0][0]) #we know cList here only has one entry and we want remove that u'   '
+	db.commit()
+	db.close()
+	return listEntries
+
 #==========================================================
 #db.commit() #save changes
 #db.close()  #close database
