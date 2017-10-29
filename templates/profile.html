@@ -10,9 +10,12 @@
 		{{USER}}'s Blog
 	</h1>
 	{% for entries in entryList %}
+	<form action="/editPost/" method = "POST">
 		<br>
-		{{entries}}
+		<div name={{entries}}> {{entries}} </div>
+		<input class="btn btn-default" type="submit" value="Edit Post" name="edit">
 		<br>
+	</form>
 		------------------------------
 	{% endfor %}
   <div class="bottomcorner">
