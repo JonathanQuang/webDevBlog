@@ -38,7 +38,7 @@ def listUsers(tablename, withPassword, user):
     db=sqlite3.connect(f)
     c=db.cursor()
     if (withPassword):
-        command = "SELECT pass FROM %s WHERE name = %s;"%(tablename, user)
+        command = "SELECT pass FROM %s WHERE name = '%s';"%(tablename, user)
     else:
         command = "SELECT name FROM %s;"%(tablename)
     c.execute(command)
