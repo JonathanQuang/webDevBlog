@@ -51,6 +51,10 @@ def profile():
 	print "wat"
     return render_template('profile.html', USER=session['user'], entryList=DBbuild.listPosts(session['user']))
 
+@myapp.route('/otherBlog/', methods=['GET', 'POST'])
+def otherBlog():
+    return render_template('listUserEntries.html', USER=session['user'], otherUSER=request.form['uname'],entryList=DBbuild.listPosts(request.form['uname']))
+
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():
 	return render_template('makePost.html', USER=session['user'])
