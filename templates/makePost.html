@@ -6,9 +6,9 @@
 {% block content1 %}
 
 <div class="topcorner">
-{{USER}}
+<a href="/profile/"> {{USER}} </a>
 <form action= "/logout/" method= "POST">
-<input type="submit" class="btn btn-info" value="Logout">
+<input type="submit" class="btn btn-info" value="Log Out">
 </form>
 </div>
 <center>
@@ -17,8 +17,8 @@
 <form action="/profile/" method="post">
 <textarea class="form-control" rows="5" placeholder="Type something" name="postText"></textarea>
 <br>
-<input class="btn btn-primary" type="submit" value="Submit" id="submit">
-<input class="btn btn-danger" type="submit" value="Cancel" id="cancel">
+<input class="btn btn-primary" type="submit" value="Submit" name="submit" >
+<input class="btn btn-danger" type="submit" value="Cancel" name="cancel">
 </form>
 </center>
 {% endblock %}

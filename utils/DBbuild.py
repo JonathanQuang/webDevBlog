@@ -13,11 +13,11 @@ def createTABLE():
     f="data/blog.db"
     db=sqlite3.connect(f)
     c=db.cursor()
-    command = "CREATE TABLE IF NOT EXISTS users (name TEXT, pass TEXT);" 
-    c.execute(command) 
-    command = "CREATE TABLE IF NOT EXISTS postNum(name TEXT, postid INTEGER);" 
-    c.execute(command) 
-    command = "CREATE TABLE IF NOT EXISTS posts(postid INTEGER, post TEXT);" 
+    command = "CREATE TABLE IF NOT EXISTS users (name TEXT, pass TEXT);"
+    c.execute(command)
+    command = "CREATE TABLE IF NOT EXISTS postNum(name TEXT, postid INTEGER);"
+    c.execute(command)
+    command = "CREATE TABLE IF NOT EXISTS posts(postid INTEGER, post TEXT);"
     c.execute(command)
     db.commit()
     db.close()
@@ -31,7 +31,7 @@ def insertintoTABLE(tablename, field1, field2):
     command = "INSERT INTO %s VALUES('%s', '%s');"%(tablename, field1, field2)
     c.execute(command)
     db.commit()
-    db.close()  
+    db.close()
 
 def listUsers(tablename, withPassword, user):
     f="data/blog.db"
@@ -66,6 +66,14 @@ def listUserEntries(username):
 	db.close()
 	return listEntries
 
+def listAllUsers():
+    f="data/blog.db"
+    db=sqlite3.connect(f)
+    c=db.cursor()
+    userList=[]
+    for row in c.execute('SELECT name from users'):
+        userList.append(row[0])
+    return userList
 #==========================================================
 #db.commit() #save changes
 #db.close()  #close database

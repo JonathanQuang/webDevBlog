@@ -35,10 +35,20 @@ def home():
                 print DBbuild.listUsers("users", True, user)[0][0]
                 if password == DBbuild.listUsers("users", True, user)[0][0]:
                     session['user'] = user
-                    return render_template('listUsers.html', USER = session['user'])
+                    print DBbuild.listAllUsers()
+                    return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
         return redirect(url_for('error'))
-       
-@myapp.route('/error/', methods = ['GET','POST'])
+
+@myapp.route('/profile/', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html', USER=session['user'])
+
+@myapp.route('/newpost/', methods = ['GET', 'POST'])
+def newpost():
+    #posts=request.form['postText']
+    #if request.form['submit'] == "Submit":
+    return render_template('makePost.html', USER=session['user'])
+@myapp.route('/error/', methods = ['GET', 'POST'])
 def error():
  #   if bool(list) == False:
     return render_template ('error.html')

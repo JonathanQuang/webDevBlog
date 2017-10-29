@@ -2,16 +2,16 @@
 
 {% block content1 %}
 <div class="topcorner">
-{{USER}}
+<a href="/profile/"> {{USER}} </a>
 <form action= "/logout/" method= "POST">
-<input type="submit" class="btn btn-info" value="Logout">
+<input type="submit" class="btn btn-info" value="Log Out">
 </form>
 </div>
-	<form method="GET" action="/blogEntries/">
+<center>
+	<h1> Click on a username! </h1>
 	{% for user in listUser %}
-		<input type="radio" name="blogUserName" value="{{user}}">
 		{{user}}
 		<br>
 	{%endfor%}
-	</form>
+</center>
 {% endblock %}
