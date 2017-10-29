@@ -7,10 +7,13 @@
 
 <div class="topcorner">
 {{USER}}
+<form action= "/logout/" method= "POST">
+<input type="submit" class="btn btn-info" value="Logout">
+</form>
 </div>
 <center>
 <h1> Input text for your post! </h1>
-<br> 
+<br>
 <form action="/profile/" method="post">
 <textarea class="form-control" rows="5" placeholder="Type something" name="postText"></textarea>
 <br>

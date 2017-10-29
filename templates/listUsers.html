@@ -3,6 +3,9 @@
 {% block content1 %}
 <div class="topcorner">
 {{USER}}
+<form action= "/logout/" method= "POST">
+<input type="submit" class="btn btn-info" value="Logout">
+</form>
 </div>
 	<form method="GET" action="/blogEntries/">
 	{% for user in listUser %}
@@ -10,5 +13,5 @@
 		{{user}}
 		<br>
 	{%endfor%}
-	</form>	
+	</form>
 {% endblock %}
