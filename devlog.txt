@@ -27,3 +27,6 @@ Updated templates
 
 jonathanQ -- 2017-10-26 20:32
 Fixed issue with Opertional error where the database file could not be opened.
+
+xavierC -- 2017-10-29 17:33
+Finished list of users, view other users blog, view your own posts, and assisted in make new post.
