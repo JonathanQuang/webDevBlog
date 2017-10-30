@@ -18,7 +18,7 @@ def root():
 @myapp.route('/home/', methods = ['GET','POST'])
 def home():
     if bool(session) != False:
-        return render_template("listUsers.html", USER = session['user'])
+        return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
     user = request.form['username']
     print user
     password = hashlib.md5(request.form['inputPassword3'].encode()).hexdigest()
@@ -29,7 +29,7 @@ def home():
                 return redirect(url_for('error'))
         DBbuild.insertIntoUserTABLE('users', user, password)
         session['user'] = user
-        return render_template('listUsers.html', USER = session['user'])
+        return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
     if request.form['submit'] == "Sign in":
         for entry in DBbuild.listUsers("users", False, ""):
             if user == entry[0]:
@@ -42,13 +42,13 @@ def home():
 
 @myapp.route('/profile/', methods=['GET', 'POST'])
 def profile():
-	try: 
-		print 1 
-		post = request.form['postText'] 
-		print 2 
-		DBbuild.insertIntoPostsTABLE(session['user'], post) 
-		print 3 
-	except: 
+	try:
+		print 1
+		post = request.form['postText']
+		print 2
+		DBbuild.insertIntoPostsTABLE(session['user'], post)
+		print 3
+	except:
 		print "postText error"
 	try:
 		print 4
@@ -56,11 +56,11 @@ def profile():
 		print 5
 		#DBbuild.insertintoTABLE('posts', session['user'], ePost)
 		print 6
-	except: 
-		print "editText error" 
+	except:
+		print "editText error"
 	pairedList=DBbuild.getPostsAndIDPairs(session['user'])
 	return render_template('profile.html', USER=session['user'], entryList=pairedList)
-	
+
 @myapp.route('/otherBlog/', methods=['GET', 'POST'])
 def otherBlog():
     return render_template('listUserEntries.html', USER=session['user'], otherUSER=request.form['uname'],entryList=DBbuild.listPosts(request.form['uname']))
@@ -74,17 +74,17 @@ def editpost():
 	post = request.form['edit']
 	text = DBbuild.getPostsFromIDandUser(post,session['user'])[0]
 	return render_template('editPost.html', ENTRY=text)
-	
+
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():
  #   if bool(list) == False:
     return render_template ('error.html')
-	
+
 @myapp.route('/logout/', methods= ['GET', 'POST'])
 def logout():
     session.pop('user')
-    return redirect(url_for('root'))	
-	
+    return redirect(url_for('root'))
+
 if __name__ == '__main__':
     myapp.debug = True
     myapp.run()
