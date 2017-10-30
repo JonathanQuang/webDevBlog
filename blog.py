@@ -53,8 +53,11 @@ def profile():
 	try:
 		print 4
 		ePost = request.form['editText']
+                print ePost
+                numPost = request.form['submit']
+                print numPost
 		print 5
-		#DBbuild.insertintoTABLE('posts', session['user'], ePost)
+		DBbuild.replaceValueInPosts(session['user'], ePost,numPost )
 		print 6
 	except:
 		print "editText error"
@@ -73,7 +76,7 @@ def newpost():
 def editpost():
 	post = request.form['edit']
 	text = DBbuild.getPostsFromIDandUser(post,session['user'])[0]
-	return render_template('editPost.html', ENTRY=text)
+	return render_template('editPost.html', ENTRY=text, POSTNUM = post)
 
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():

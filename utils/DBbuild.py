@@ -47,7 +47,15 @@ def insertIntoPostsTABLE(username, postText):
 	c.execute(command)
 	db.commit()
 	db.close()
-	
+def replaceValueInPosts(username,postText, postID):
+	f="data/blog.db"
+	db=sqlite3.connect(f)
+	c=db.cursor()
+        command = "UPDATE posts SET post = '%s' WHERE postNum = "%(postText) + postID + ';'
+        c.execute(command)
+        db.commit()
+	db.close()
+
 def getPostsAndIDPairs(username):
 	f="data/blog.db"
 	db=sqlite3.connect(f)
