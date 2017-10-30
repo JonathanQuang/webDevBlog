@@ -9,11 +9,12 @@
 	<h1>
 		{{USER}}'s Blog
 	</h1>
+	Click the button with the post number to edit that post
 	{% for entries in entryList %}
 	<form action="/editPost/" method = "POST">
 		<br>
-		<div name={{entries}}> {{entries}} </div>
-		<input class="btn btn-default" type="submit" value="Edit Post" name="edit">
+		{{entries[0]}}
+		<input class="btn btn-default" type="submit" value={{entries[1]}} name="edit">
 		<br>
 	</form>
 		------------------------------

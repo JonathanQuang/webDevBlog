@@ -1,5 +1,18 @@
 {% block content2 %}
 
-PUT THE ORIGINAL POST HERE 
-
+<h1>
+	Original Text:
+</h1>
+<br>
+{{ENTRY}}
+<br>
+<h1>
+	Type in the new text here:
+</h1>
+Feel free to copy and paste the old text:
+<br>
+<form action="/profile/" method="post">
+<textarea class="form-control" rows="5" placeholder="{{ENTRY}}" name="editText"></textarea>
+<br>
+<input class="btn btn-primary" type="submit" value="Submit" name="submit" >
 {% endblock %}
