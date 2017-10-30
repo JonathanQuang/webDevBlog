@@ -1,9 +1,8 @@
 # Team BackCorner
-Jonathan Quang, Alex Taradachuk, Xavier Chen
+##Jonathan Quang, Alex Taradachuk, Xavier Chen
 
 We are creating a web blog application with the following conditions:
 
-Your team has been contracted to create a web log hosting site.
 -Users will have to register to use the site.
 
 -Logged in users will be able to
