@@ -68,7 +68,8 @@ def getPostsFromIDandUser(id,username):
 	db=sqlite3.connect(f)
 	c=db.cursor()
 	command = "SELECT post FROM posts WHERE name='" + username  + "' AND postNum='" + id + "';"
-	return c.execute(command)[0]
+	for entry in c.execute(command):
+		return entry
 
 def listUsers(tablename, withPassword, user):
     f="data/blog.db"
