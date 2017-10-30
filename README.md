@@ -2,6 +2,7 @@
 ## Jonathan Quang, Alex Taradachuk, Xavier Chen
 
 Quickstart Instructions:
+
 1)Install flask for python
 
 2)git clone https://github.com/JonathanQuang/webDevBlog.git
