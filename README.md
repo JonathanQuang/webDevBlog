@@ -29,4 +29,6 @@ Quickstart Instructions:
 Updated versions of the design.pdf can be found at https://docs.google.com/a/stuy.edu/document/d/1D4xv4En7EOpyavJsTQkezyTgR8AJwQdw0Gleim-OP6o/edit?usp=sharing if you are logged into stuy.edu email.
 
 
-### CSS comes from linking into bootstrap
+CSS comes from linking into bootstrap
+
+We have had issues with phantom indentation errors.
