@@ -31,5 +31,12 @@ Fixed issue with Opertional error where the database file could not be opened.
 xavierC -- 2017-10-29 17:33
 Finished list of users, view other users blog, view your own posts, and assisted in make new post.
 
+jonathanQ -- 2017-10-29 22:10
+Migrated all the code to utilize the posts database with an extra field, called postids, to account
+for duplicate posts and issues with passing entries as part of a POST request
+
+alexT --2017-10-29 23:10
+Fixed editing of former posts
+
 xavierC -- 2017-10-29 23:35
 Did some aesthetic stuff and fixed minor bugs with users not showing.
