@@ -3,8 +3,11 @@
 
 Quickstart Instructions:
 1)Install flask for python
+
 2)git clone https://github.com/JonathanQuang/webDevBlog.git
+
 3)cd into directory
+
 4)do python blog.py
 
 # We are creating a web blog application with the following conditions:
