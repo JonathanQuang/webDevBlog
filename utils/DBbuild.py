@@ -44,9 +44,9 @@ def replaceValueInPosts(username,postText, postID):
 	f="data/blog.db"
 	db=sqlite3.connect(f)        #connects to Datebase to allow editing
 	c=db.cursor()
-        command = "UPDATE posts SET post = '%s' WHERE postNum = '%s' && name = '%s';"%(postText,postID,username) #Replaces the old post with the new post
-        c.execute(command)
-        db.commit()
+	command = "UPDATE posts SET post = '%s' WHERE postNum = '%s' AND name = '%s';"%(postText,postID,username) #Replaces the old post with the new post
+	c.execute(command)
+	db.commit()
 	db.close()      #closes and commits changes
 
 def getPostsAndIDPairs(username):
