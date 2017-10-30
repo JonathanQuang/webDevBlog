@@ -19,7 +19,7 @@ def insertIntoUserTABLE(tablename, field1, field2):
     f="data/blog.db"
     db=sqlite3.connect(f)         #connects to Datebase to allow editing
     c=db.cursor()
-    command = "INSERT INTO %s VALUES('%s', '%s');"%(tablename, field1, field2)       #adds uder to User Table
+    command = "INSERT INTO %s VALUES('%s', '%s');"%(tablename, field1, field2)       #adds user to User Table
     c.execute(command)
     db.commit()
     db.close()       #closes and commits changes
@@ -44,7 +44,7 @@ def replaceValueInPosts(username,postText, postID):
 	f="data/blog.db"
 	db=sqlite3.connect(f)        #connects to Datebase to allow editing
 	c=db.cursor()
-        command = "UPDATE posts SET post = '%s' WHERE postNum = "%(postText) + postID + ';' #Replaces the old post with the new post
+        command = "UPDATE posts SET post = '%s' WHERE postNum = '%s' && name = '%s';"%(postText,postID,username) #Replaces the old post with the new post
         c.execute(command)
         db.commit()
 	db.close()      #closes and commits changes
