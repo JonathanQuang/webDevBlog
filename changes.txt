@@ -1,0 +1,21 @@
+Changes between initial design and the final project:
+Aside from some minor variable and file renames, 
+here are the changes:
+
+Initial: Database of posts had two fields
+Final: Database of posts have three fields, the extra
+being postID due do the issue of having the same
+text in different posts
+
+Initial:No utils folder
+Final: We created a utils folder to store our database
+python functions because we quickly realized just
+how messay the blog.py file was becoming. It also
+allowed two people to work simultaneously on python
+(well as simultaneous as github allows).
+
+Initial: No Styling 
+Final: Use of inline css from Bootstrap tutorial website
+We decided to put at least some effort into making it 
+look nice.
+
