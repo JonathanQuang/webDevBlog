@@ -1,93 +1,80 @@
 from flask import Flask, render_template,  request, session, redirect, url_for
-import os, sqlite3, csv, hashlib
 from utils import DBbuild
-myapp = Flask(__name__)
+import os, sqlite3, csv, hashlib
 
-#myapp.secret_key = os.urandom(32)
-myapp.secret_key="testing123"
-DBbuild.createTABLE()
+myapp = Flask(__name__)
+myapp.secret_key="SuperSecretKeyThatIsTooLongToJustRandomlyHackInto"
+DBbuild.createTABLE() #creates initial tables if they dont exist already
 
 
 @myapp.route('/', methods = ['GET','POST'])
 def root():
-    if bool(session) != False:
+    if bool(session) != False:     #logs user back in if their session is valid
         return redirect(url_for('home'))
     else:
-        return render_template('login.html', title = "Login")
+        return render_template('login.html', title = "Login") # directs to login page
 
 @myapp.route('/home/', methods = ['GET','POST'])
 def home():
-    if bool(session) != False:
+    if bool(session) != False:       #logs user back in if their session is valid
         return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
     user = request.form['username']
-    print user
-    password = hashlib.md5(request.form['inputPassword3'].encode()).hexdigest()
-    print password
-    if request.form['submit'] == "Sign up":
+    password = hashlib.md5(request.form['inputPassword3'].encode()).hexdigest() #hashes password with MD5 encryption
+    if request.form['submit'] == "Sign up":              #checks if sign up button was pressed
         for entry in DBbuild.listUsers("users", False, ""):
-            if (user == entry[0]):
+            if (user == entry[0]):           #checks if username isn't already taken, if it is then redirects to error page
                 return redirect(url_for('error'))
-        DBbuild.insertIntoUserTABLE('users', user, password)
-        session['user'] = user
+        DBbuild.insertIntoUserTABLE('users', user, password)        # adds new user to the table of Users
+        session['user'] = user    #creates session for the user
         return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
-    if request.form['submit'] == "Sign in":
+    if request.form['submit'] == "Sign in":          #checks if sign in button was pressed
         for entry in DBbuild.listUsers("users", False, ""):
-            if user == entry[0]:
+            if user == entry[0]:     #checks if the user is in the table of Users
                 print DBbuild.listUsers("users", True, user)[0][0]
-                if password == DBbuild.listUsers("users", True, user)[0][0]:
-                    session['user'] = user
-                    print DBbuild.listAllUsers()
+                if password == DBbuild.listUsers("users", True, user)[0][0]:      #checks for password match with attempted user login
+                    session['user'] = user #starts session
                     return render_template('listUsers.html', USER = session['user'], listUser=DBbuild.listAllUsers())
         return redirect(url_for('error'))
 
 @myapp.route('/profile/', methods=['GET', 'POST'])
 def profile():
 	try:
-		print 1
-		post = request.form['postText']
-		print 2
-		DBbuild.insertIntoPostsTABLE(session['user'], post)
-		print 3
+		post = request.form['postText'] #pulls data from textbox from the CreatePost page if it exists
+		DBbuild.insertIntoPostsTABLE(session['user'], post)   # adds a post
 	except:
 		print "postText error"
 	try:
-		print 4
-		ePost = request.form['editText']
-                print ePost
-                numPost = request.form['submit']
-                print numPost
-		print 5
-		DBbuild.replaceValueInPosts(session['user'], ePost,numPost )
-		print 6
+		ePost = request.form['editText'] #pulls data from textbox from the EditPost page if it exists
+                numPost = request.form['submit']  #sets the number of the post
+		DBbuild.replaceValueInPosts(session['user'], ePost,numPost ) #updates table with new post
 	except:
 		print "editText error"
-	pairedList=DBbuild.getPostsAndIDPairs(session['user'])
-	return render_template('profile.html', USER=session['user'], entryList=pairedList)
+	pairedList= DBbuild.getPostsAndIDPairs(session['user'])    #list of users that gets displayed on main page
+	return render_template('profile.html', USER=session['user'], entryList=pairedList)  
 
 @myapp.route('/otherBlog/', methods=['GET', 'POST'])
 def otherBlog():
-    return render_template('listUserEntries.html', USER=session['user'], otherUSER=request.form['uname'],entryList=DBbuild.listPosts(request.form['uname']))
+    return render_template('listUserEntries.html', USER=session['user'], otherUSER=request.form['uname'],entryList=DBbuild.listPosts(request.form['uname']))  #displays another user's blog pages
 
 @myapp.route('/newpost/', methods = ['GET', 'POST'])
 def newpost():
-	return render_template('makePost.html', USER=session['user'])
+	return render_template('makePost.html', USER=session['user'])      #renders the page that allows you to create a post
 
 @myapp.route('/editPost/',methods = ['GET', 'POST'])
 def editpost():
-	post = request.form['edit']
-	text = DBbuild.getPostsFromIDandUser(post,session['user'])[0]
-	return render_template('editPost.html', ENTRY=text, POSTNUM = post)
+	post = request.form['edit']                                       #returns postID of the post that will be edited
+	text = DBbuild.getPostsFromIDandUser(post,session['user'])[0]          #returns post text from posts table matching the post id
+	return render_template('editPost.html', ENTRY=text, POSTNUM = post)         #renders page that allows user to edit their post
 
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():
- #   if bool(list) == False:
-    return render_template ('error.html')
+    return render_template ('error.html')            #basic error page that leads back to home/login page
 
 @myapp.route('/logout/', methods= ['GET', 'POST'])
 def logout():
-    session.pop('user')
-    return redirect(url_for('root'))
+    session.pop('user')            #ends the session for the user
+    return redirect(url_for('root'))      #redirects back to the login page
 
 if __name__ == '__main__':
     myapp.debug = True
-    myapp.run()
+    myapp.run()        #runs the app
