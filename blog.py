@@ -42,13 +42,13 @@ def profile():
 		post = request.form['postText'] #pulls data from textbox from the CreatePost page if it exists
 		DBbuild.insertIntoPostsTABLE(session['user'], post)   # adds a post
 	except:
-		print "postText error"
+		print "no new post query"
 	try:
 		ePost = request.form['editText'] #pulls data from textbox from the EditPost page if it exists
 		numPost = request.form['submit']  #sets the number of the post
 		DBbuild.replaceValueInPosts(session['user'], ePost,numPost ) #updates table with new post
 	except:
-		print "editText error"
+		print "no new edit post query"
 	pairedList= DBbuild.getPostsAndIDPairs(session['user'])    #list of users that gets displayed on main page
 	return render_template('profile.html', USER=session['user'], entryList=pairedList)  
 
