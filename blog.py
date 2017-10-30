@@ -72,7 +72,6 @@ def newpost():
 @myapp.route('/editPost/',methods = ['GET', 'POST'])
 def editpost():
 	post = request.form['edit']
-	print post
 	return render_template('editPost.html', ENTRY=post)
 	
 @myapp.route('/error/', methods = ['GET', 'POST'])
