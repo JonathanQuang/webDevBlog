@@ -45,7 +45,7 @@ def profile():
 		print "postText error"
 	try:
 		ePost = request.form['editText'] #pulls data from textbox from the EditPost page if it exists
-                numPost = request.form['submit']  #sets the number of the post
+		numPost = request.form['submit']  #sets the number of the post
 		DBbuild.replaceValueInPosts(session['user'], ePost,numPost ) #updates table with new post
 	except:
 		print "editText error"
@@ -64,7 +64,7 @@ def newpost():
 def editpost():
 	post = request.form['edit']                                       #returns postID of the post that will be edited
 	text = DBbuild.getPostsFromIDandUser(post,session['user'])[0]          #returns post text from posts table matching the post id
-	return render_template('editPost.html', ENTRY=text, POSTNUM = post)         #renders page that allows user to edit their post
+	return render_template('editPost.html', ENTRY=text, POSTNUM = post, USER=session['user'])         #renders page that allows user to edit their post
 
 @myapp.route('/error/', methods = ['GET', 'POST'])
 def error():

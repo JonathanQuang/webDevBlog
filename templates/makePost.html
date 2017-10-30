@@ -6,7 +6,7 @@
 {% block content1 %}
 
 <div class="topcorner">
-<a href="/profile/"> {{USER}} </a>
+<a href="/profile/"> {{USER}} <br> profile </a>
 <br>
 <a href="/home/"> <button class="btn btn-success" type="submit"> Home </button></a>
 <br>
@@ -16,7 +16,7 @@
 </div>
 <center>
 <h1> Input text for your post! </h1>
-<br>
+<br><br><br>
 <form action="/profile/" method="post">
 <textarea class="form-control" rows="5" placeholder="Type something" name="postText"></textarea>
 <br>

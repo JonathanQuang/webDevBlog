@@ -1,5 +1,19 @@
+{% extends "home.html" %}
 {% block content2 %}
 
+{% endblock%}
+
+{% block content1 %}
+
+<div class="topcorner">
+<a href="/profile/"> {{USER}} <br> profile </a>
+<br>
+<a href="/home/"> <button class="btn btn-success" type="submit"> Home </button></a>
+<br>
+<form action= "/logout/" method= "POST">
+<input type="submit" class="btn btn-info" value="Log Out">
+</form>
+</div>
 <h1>
 	Original Text:
 </h1>
@@ -12,6 +26,7 @@
 Feel free to copy and paste the old text:
 <br>
 <form action="/profile/" method="post">
+<br>
 <textarea class="form-control" rows="5" placeholder="{{ENTRY}}" name="editText"></textarea>
 <br>
 <input class="btn btn-primary" type="submit" value="{{POSTNUM}}" name="submit" >
