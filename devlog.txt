@@ -40,3 +40,9 @@ Fixed editing of former posts
 
 xavierC -- 2017-10-29 23:35
 Did some aesthetic stuff and fixed minor bugs with users not showing.
+
+jonathanQ -- 2017-10-29 23:45
+Added background color
+
+alexT -- 2017-10-30 00:21
+Fixed bug where editing one post editing all posts with the same id
