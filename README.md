@@ -1,7 +1,7 @@
 # Team BackCorner
 ## Jonathan Quang, Alex Taradachuk, Xavier Chen
 
-We are creating a web blog application with the following conditions:
+#We are creating a web blog application with the following conditions:
 
 -Users will have to register to use the site.
 
@@ -18,4 +18,5 @@ We are creating a web blog application with the following conditions:
 
 Updated versions of the design.pdf can be found at https://docs.google.com/a/stuy.edu/document/d/1D4xv4En7EOpyavJsTQkezyTgR8AJwQdw0Gleim-OP6o/edit?usp=sharing if you are logged into stuy.edu email.
 
-CSS comes from linking into bootstrap
+
+###CSS comes from linking into bootstrap
